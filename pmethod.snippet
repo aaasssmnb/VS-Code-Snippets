@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>pmethod</Title>
+			<Shortcut>pmethod</Shortcut>
+			<Description>自动实现的属性的代码片段
+语言版本:  C# 3.0 或更高版本</Description>
+			<Author>Microsoft Corporation</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>methodname</ID>
+					<ToolTip>方法名</ToolTip>
+					<Default>MyMethod</Default>
+				</Literal>
+				<Literal>
+					<ID>returntype</ID>
+					<ToolTip>返回值</ToolTip>
+					<Default>Myreturn</Default>
+				</Literal>
+				<Literal>
+					<ID>args</ID>
+					<ToolTip>参数</ToolTip>
+					<Default></Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[public $returntype$ $methodname$ ($args$)
+			{
+				$end$
+			}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

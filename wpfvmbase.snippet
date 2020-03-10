@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>wpfvmbase</Title>
+			<Shortcut>wpfvmbase</Shortcut>
+			<Description>ViewModelBase的代码片段</Description>
+			<Author>Microsoft Corporation</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>type</ID>
+					<ToolTip>viewmodelname</ToolTip>
+					<Default>ViewModelBase</Default>
+				</Literal>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[private ObservableCollection<$type$> $field$;
+	public class $viewmodelname$ : INotifyPropertyChanged
+    {
+        #region UI更新接口
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName]string propertyName = null)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion
+    }
+	$end$]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>wpfdccommand </Title>
+			<Shortcut>wpfdccommand </Shortcut>
+			<Description>DelegateCommand的代码片段</Description>
+			<Author>Microsoft Corporation</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[
+			        public class DelegateCommand<Tparameter> : ICommand
+    {
+        private readonly Action<Tparameter> _executeAction;
+        private readonly Func<Tparameter, bool> _canExecuteFunc;
+        public event EventHandler CanExecuteChanged;
+        public DelegateCommand(Action<Tparameter> execute)
+            : this(execute, null)
+        { }
+
+        public DelegateCommand(Action<Tparameter> execute, Func<Tparameter, bool> canExecute)
+        {
+            if (execute == null)
+            {
+                return;
+            }
+            _executeAction = execute;
+            _canExecuteFunc = canExecute;
+        }
+        public bool CanExecute(object parameter)
+        {
+            if (!(parameter is Tparameter))
+            {
+                return false;
+            }
+            if (_canExecuteFunc == null)
+            {
+                return true;
+            }
+            return _canExecuteFunc((Tparameter)parameter);
+        }
+        public void Execute(object parameter)
+        {
+            if (!(parameter is Tparameter))
+            {
+                return;
+            }
+            if (_executeAction == null)
+            {
+                return;
+            }
+            _executeAction((Tparameter)parameter);
+        }
+        public void OnCanExecuteChanged()
+        {
+            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+        }
+    }
+	$end$]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>
