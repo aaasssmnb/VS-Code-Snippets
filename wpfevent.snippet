@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>wpfroutedevent</Title>
+			<Shortcut>wpfevent</Shortcut>
+			<Description>Routed Event,自定义控件事件的代码片段</Description>
+			<Author>Microsoft Corporation</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>eventname</ID>
+					<ToolTip>事件名</ToolTip>
+					<Default>MyEvent</Default>
+				</Literal>
+				<Literal>
+					<ID>owner</ID>
+					<ToolTip>事件所有者</ToolTip>
+					<Default>MyControl</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[/// <summary>
+        /// 声明路由事件
+        /// 参数:要注册的路由事件名称，路由事件的路由策略，事件处理程序的委托类型(可自定义)，路由事件的所有者类类型
+        /// </summary>
+        public static readonly RoutedEvent $eventname$Event = EventManager.RegisterRoutedEvent("$eventname$Event", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof($owner$));
+        /// <summary>
+        /// CLR事件包装,通过“+=”与“-=”操作符来操作
+        /// </summary>
+        public event RoutedEventHandler $eventname$
+        {
+            //将路由事件添加路由事件处理程序
+            add { AddHandler($eventname$Event, value); }
+            //从路由事件处理程序中移除路由事件
+            remove { RemoveHandler($eventname$Event, value); }
+        }
+        /// <summary>
+        /// 触发事件的方法
+        /// </summary>
+        private void $eventname$_Trigger()
+        {
+            //定义传递参数
+            RoutedEventArgs args = new RoutedEventArgs($eventname$Event, this);
+            //引用自定义路由事件
+            this.RaiseEvent(args);
+        }]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>
